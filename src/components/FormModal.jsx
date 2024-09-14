@@ -1,12 +1,11 @@
 import React from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { inputs } from '../constants';
-import { addTask } from '../redux/slices/crudSlice';
+import { addTask, editTask } from '../redux/slices/crudSlice';
 import { useDispatch } from 'react-redux';
 
-const FormModal = ({ isOpen, close }) => {
+const FormModal = ({ isOpen, close, task }) => {
   const dispatch = useDispatch();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -14,14 +13,18 @@ const FormModal = ({ isOpen, close }) => {
     const formData = new FormData(e.target);
     const taskData = Object.fromEntries(formData.entries());
 
-    dispatch(addTask(taskData));
+    if (!task) {
+      dispatch(addTask(taskData));
+    } else {
+      dispatch(editTask({ id: task.id, ...taskData }));
+    }
 
     close();
   };
   return (
     <Modal show={isOpen} centered className="text-black" onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title>Add New Todo</Modal.Title>
+        <Modal.Title>{task ? 'Edit Todo' : 'Add New Todo'}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -32,6 +35,7 @@ const FormModal = ({ isOpen, close }) => {
                 name={prop.name}
                 placeholder={prop.holder}
                 type={prop.type}
+                defaultValue={task && task[prop.name]}
                 required
               />
             </Form.Group>
@@ -40,7 +44,7 @@ const FormModal = ({ isOpen, close }) => {
             <Button variant="secondary" onClick={close}>
               Cancel
             </Button>
-            <Button type="submit">Create</Button>
+            <Button type="submit">{task ? "Update" : "Create"}</Button>
           </Modal.Footer>
         </Form>
       </Modal.Body>

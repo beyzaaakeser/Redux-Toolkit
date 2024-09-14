@@ -22,8 +22,13 @@ const crudSlice = createSlice({
       const i = state.tasks.findIndex((i) => i.id === action.payload)
       state.tasks.splice(i,1)
     },
+
+    editTask  : (state,action) => {
+        const i = state.tasks.findIndex((i) => i.id === action.payload.id)
+        state.tasks.splice(i,1,action.payload)
+    }
   },
 });
 
 export default crudSlice.reducer;
-export const { addTask,deleteTask } = crudSlice.actions;
+export const { addTask,deleteTask,editTask } = crudSlice.actions;
