@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { increase,decrease } from '../redux/slices/counterSlice';
+import { increase,decrease,setCount } from '../redux/slices/counterSlice';
 
 const Counter = () => {
   const { count } = useSelector((store) => store.counterReducer);
@@ -18,8 +18,8 @@ const Counter = () => {
         <button onClick={() => dispatch(increase())}  className="border text-3xl font-bold inline-flex items-center justify-center rounded-md px-3 py-1 text-green-700">
           +
         </button>
-        <button className="border text-3xl font-semibold inline-flex items-center justify-center rounded-md px-3 py-1 text-yellow-700">
-          SIFIRLA
+        <button onClick={()=> dispatch(setCount(99))} className="border text-3xl font-semibold inline-flex items-center justify-center rounded-md px-3 py-1 text-yellow-700">
+          Set Number
         </button>
       </div>
     </div>
