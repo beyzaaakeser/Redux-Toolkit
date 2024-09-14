@@ -28,8 +28,7 @@ const counterSlice = createSlice({
 });
 
 // storea tanıtmak için export
-export default counterSlice;
-export const {increase,decrease} =  counterSlice.actions;
+export default counterSlice.reducer;
 
-console.log(counterSlice.actions.increase("veri"));
-console.log(counterSlice.actions.decrease("veri"));
+// aksiyon oluşturan fonksiyonları export et
+export const { increase, decrease } = counterSlice.actions;
