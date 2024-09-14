@@ -3,10 +3,13 @@ import { Button, Container, Stack, Table } from 'react-bootstrap';
 import { MdEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import FormModal from '../components/FormModal';
+import { useSelector } from 'react-redux';
 
 const Crud = () => {
 
     const [isOpen, setIsOpen] = useState(false)
+    const state = useSelector((store) => store.crudReducer)
+    console.log(state);
   return (
     <div className="">
       <Container>
