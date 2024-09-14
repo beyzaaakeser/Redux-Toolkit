@@ -7,7 +7,7 @@ const Counter = () => {
 
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className='min-h-100 mt-40 '>
       <div className="flex gap-3 items-center justify-center">
         <button onClick={() => dispatch(decrease())} className="border text-3xl font-bold inline-flex items-center justify-center rounded-md px-3 py-1 text-red-700">
           -
