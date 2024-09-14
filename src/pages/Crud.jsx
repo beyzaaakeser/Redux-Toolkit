@@ -18,8 +18,8 @@ const Crud = () => {
                 <tr>
                     <th>#</th>
                     <th>Task</th>
-                    <th>Manager</th>
-                    <th>Worker</th>
+                    <th>Author</th>
+                    <th>Assigned</th>
                     <th>Date</th>
                     <th>Status</th>
                 </tr>
